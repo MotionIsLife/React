@@ -13,16 +13,90 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-        
+
         <!-- build:js scripts/vendor/react-with-addons.min.js -->
         <script src="bower_components/react/react-with-addons.min.js"></script>
+		<script src="bower_components\react\react.js"></script>
+        <script src="bower_components\react\JSXTransformer.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
         <!-- endbuild -->
-        
-        
+        <style type="text/css">
+		   .block1 {
+			width: 250px;
+			background: #cbd;
+			padding: 2px;
+			padding-right: 20px;
+			border: solid 1px black;
+			float: right;
+		   }
+		   .block2 {
+			width: 200px;
+			background: #fc0;
+			padding: 5px;
+			border: solid 1px black;
+			float: left;
+			position: relative;
+			left: 0px;
+		   }
+		   .block3 {
+			width: 200px;
+			background: #ad5;
+			padding: 5px;
+			border: solid 1px black;
+			float: left;
+			position: relative;
+			top: 140px;
+			left: -70px;
+		   }
+		   .block4 {
+			width: 200px;
+			background: #ad5;
+			padding: 5px;
+			border: solid 1px black;
+			float: left;
+			position: relative;
+			top: 350;
+			left: 200;
+		   }
+		</style>
+
     </head>
     <body>
-        <div id="app"></div>
-        <!--[if lt IE 10]>
+        <script type="text/jsx">
+        /*** @jsx React.DOM */
+            var App =
+                React.createClass({
+                    render:function(){
+                        return(
+                            <BButton> <BHeart />   ASDasd</BButton>
+                            <BButton> <BHeart />   ASDasd</BButton>
+                            <BButton> <BHeart />   ASDasd</BButton>
+                        )
+                    }
+            });
+
+            var BButton =
+                React.createClass({
+                render:function(){
+                    return <a className="btn btn-warning">{this.props.children}</a>
+                }
+            });
+        var BHeart =
+            React.createClass({
+                render:function(){
+                    return <span className="glyphicon glyphicon-search"></span>
+                }
+            });
+
+            React.renderComponent(<App />, document.body)
+        </script>
+
+
+
+		 <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
@@ -31,11 +105,12 @@
         <!-- endbower -->
         <!-- endbuild -->
 
-        
+
         <!-- build:js scripts/app.js -->
         <script src="scripts/app.js"></script>
+
         <!-- endbuild -->
-        
+
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
