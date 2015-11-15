@@ -23,75 +23,20 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <!-- endbuild -->
-        <style type="text/css">
-		   .block1 {
-			width: 250px;
-			background: #cbd;
-			padding: 2px;
-			padding-right: 20px;
-			border: solid 1px black;
-			float: right;
-		   }
-		   .block2 {
-			width: 200px;
-			background: #fc0;
-			padding: 5px;
-			border: solid 1px black;
-			float: left;
-			position: relative;
-			left: 0px;
-		   }
-		   .block3 {
-			width: 200px;
-			background: #ad5;
-			padding: 5px;
-			border: solid 1px black;
-			float: left;
-			position: relative;
-			top: 140px;
-			left: -70px;
-		   }
-		   .block4 {
-			width: 200px;
-			background: #ad5;
-			padding: 5px;
-			border: solid 1px black;
-			float: left;
-			position: relative;
-			top: 350;
-			left: 200;
-		   }
-		</style>
+
 
     </head>
     <body>
         <script type="text/jsx">
         /*** @jsx React.DOM */
-            var App =
-                React.createClass({
-                    render:function(){
-                        return(
-                            <BButton> <BHeart />   ASDasd</BButton>
-                            <BButton> <BHeart />   ASDasd</BButton>
-                            <BButton> <BHeart />   ASDasds</BButton>
-                        )
-                    }
-            });
-
-            var BButton =
-                React.createClass({
+            var App = React.createClass({
                 render:function(){
-                    return <a className="btn btn-warning">{this.props.children}</a>
+                    return(
+                        <h5>React Foundation</h5>
+                    )
                 }
-            });
-        var BHeart =
-            React.createClass({
-                render:function(){
-                    return <span className="glyphicon glyphicon-search"></span>
-                }
-            });
-
-            React.renderComponent(<App />, document.body)
+        });
+            React.renderComponent(<App />, document.body);
         </script>
 
 
