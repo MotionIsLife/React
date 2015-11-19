@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/<version>/react-bootstrap.min.js"></script>
 
         <!-- endbuild -->
 
@@ -29,18 +30,51 @@
     <body>
         <script type="text/jsx">
         /*** @jsx React.DOM */
-            var App = React.createClass({
-                render:function(){
-                    return(
-                        <div>
-                            <h5>React Foundation</h5>
-                            <b>asdf</b>
-                        </div>
 
+        // or
+
+            var App = React.createClass({
+
+                getInitialState: function(){
+                    return{
+
+                    }
+                },
+
+                updateText: function(e){
+
+                    console.log("что-то произошло в App");
+                },
+                render: function(){
+                    return (
+                        <div>
+                            <BButton href="javascript:alert('hello')" className="btn-primary"><BIcon className="glyphicon-heart"/> Button </BButton>
+                            <BButton href="javascript:alert('hello')" className="btn-success"><BIcon className="glyphicon-pencil"/> Button </BButton>
+                            <BButton href="javascript:alert('hello')" className="btn-danger"><BIcon className="glyphicon-inbox"/> Button </BButton>
+                        </div>
                     )
                 }
-        });
+            });
+
+            var BButton = React.createClass({
+
+               render: function(){
+                   return (
+                       this.transferPropsTo(<button className="btn">{this.props.children}</button>)
+                   );
+               }
+            });
+
+            var BIcon = React.createClass({
+                render:function() {
+                    return this.transferPropsTo(<span className="glyphicon"></span>)
+                }
+            });
+
+
             React.renderComponent(<App />, document.body);
+
+
         </script>
 
 
