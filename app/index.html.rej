@@ -1,0 +1,65 @@
+diff a/app/index.html b/app/index.html	(rejected hunks)
+@@ -38,23 +38,53 @@
+                             <BButton> <BHeart />   ASDasd</BButton>
+                            
+                         )
++=======
++
++        // or
++
++            var App = React.createClass({
++
++                getInitialState: function(){
++                    return{
++
++>>>>>>> origin/RnD
+                     }
+-            });
++                },
+ 
+-            var BButton =
+-                React.createClass({
+-                render:function(){
+-                    return <a className="btn btn-warning">{this.props.children}</a>
++                updateText: function(e){
++
++                    console.log("что-то произошло в App");
++                },
++                render: function(){
++                    return (
++                        <div>
++                            <BButton href="javascript:alert('hello')" className="btn-primary"><BIcon className="glyphicon-heart"/> Button </BButton>
++                            <BButton href="javascript:alert('hello')" className="btn-success"><BIcon className="glyphicon-pencil"/> Button </BButton>
++                            <BButton href="javascript:alert('hello')" className="btn-danger"><BIcon className="glyphicon-inbox"/> Button </BButton>
++                        </div>
++                    )
+                 }
+             });
+-        var BHeart =
+-            React.createClass({
+-                render:function(){
+-                    return <span className="glyphicon glyphicon-search"></span>
++
++            var BButton = React.createClass({
++
++               render: function(){
++                   return (
++                       this.transferPropsTo(<button className="btn">{this.props.children}</button>)
++                   );
++               }
++            });
++
++            var BIcon = React.createClass({
++                render:function() {
++                    return this.transferPropsTo(<span className="glyphicon"></span>)
+                 }
+             });
+ 
+-            React.renderComponent(<App />, document.body)
++
++            React.renderComponent(<App />, document.body);
++
++
+         </script>
+ 
+ 
