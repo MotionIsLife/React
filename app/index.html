@@ -21,52 +21,16 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/<version>/react-bootstrap.min.js"></script>
 
         <!-- endbuild -->
-        <style type="text/css">
-		   .block1 {
-			width: 250px;
-			background: #cbd;
-			padding: 2px;
-			padding-right: 20px;
-			border: solid 1px black;
-			float: right;
-		   }
-		   .block2 {
-			width: 200px;
-			background: #fc0;
-			padding: 5px;
-			border: solid 1px black;
-			float: left;
-			position: relative;
-			left: 0px;
-		   }
-		   .block3 {
-			width: 200px;
-			background: #ad5;
-			padding: 5px;
-			border: solid 1px black;
-			float: left;
-			position: relative;
-			top: 140px;
-			left: -70px;
-		   }
-		   .block4 {
-			width: 200px;
-			background: #ad5;
-			padding: 5px;
-			border: solid 1px black;
-			float: left;
-			position: relative;
-			top: 350;
-			left: 200;
-		   }
-		</style>
+
 
     </head>
     <body>
         <script type="text/jsx">
         /*** @jsx React.DOM */
+<<<<<<< HEAD
             var App =
                 React.createClass({
                     render:function(){
@@ -74,23 +38,53 @@
                             <BButton> <BHeart />   ASDasd</BButton>
                            
                         )
+=======
+
+        // or
+
+            var App = React.createClass({
+
+                getInitialState: function(){
+                    return{
+
+>>>>>>> origin/RnD
                     }
-            });
+                },
 
-            var BButton =
-                React.createClass({
-                render:function(){
-                    return <a className="btn btn-warning">{this.props.children}</a>
+                updateText: function(e){
+
+                    console.log("что-то произошло в App");
+                },
+                render: function(){
+                    return (
+                        <div>
+                            <BButton href="javascript:alert('hello')" className="btn-primary"><BIcon className="glyphicon-heart"/> Button </BButton>
+                            <BButton href="javascript:alert('hello')" className="btn-success"><BIcon className="glyphicon-pencil"/> Button </BButton>
+                            <BButton href="javascript:alert('hello')" className="btn-danger"><BIcon className="glyphicon-inbox"/> Button </BButton>
+                        </div>
+                    )
                 }
             });
-        var BHeart =
-            React.createClass({
-                render:function(){
-                    return <span className="glyphicon glyphicon-search"></span>
+
+            var BButton = React.createClass({
+
+               render: function(){
+                   return (
+                       this.transferPropsTo(<button className="btn">{this.props.children}</button>)
+                   );
+               }
+            });
+
+            var BIcon = React.createClass({
+                render:function() {
+                    return this.transferPropsTo(<span className="glyphicon"></span>)
                 }
             });
 
-            React.renderComponent(<App />, document.body)
+
+            React.renderComponent(<App />, document.body);
+
+
         </script>
 
 
