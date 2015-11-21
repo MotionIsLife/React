@@ -65,32 +65,39 @@
 
     </head>
     <body>
+    <button onClick="render()">Render</button>
+    <button onClick="unmount()">Unmount</button>
+    <hr />
+    <div id="panel"></div>
         <script type="text/jsx">
         /*** @jsx React.DOM */
-            var App =
-                React.createClass({
-                    render:function(){
-                        return(
-                            <BButton> <BHeart />   ASDasd</BButton>
-                           
-                        )
-                    }
-            });
-
-            var BButton =
-                React.createClass({
+            var App = React.createClass({
+                componentWillMount:function(){
+                    console.log("her i go");
+                },
+                componentDidMount:function(){
+                    console.log("nice place you");
+                },
+                componentWillUnmount:function(){
+                    console.log("goodbye cruel world");
+                },
+                update: function () {
+                    var newVal = this.props.val + 1;
+                    this.setProps({val : newVal});
+                    console.log("hello world");
+                },
                 render:function(){
-                    return <a className="btn btn-warning">{this.props.children}</a>
+                    console.log("render");
+                    return <button onClick={this.update}>{this.props.val}</button>
                 }
             });
-        var BHeart =
-            React.createClass({
-                render:function(){
-                    return <span className="glyphicon glyphicon-search"></span>
-                }
-            });
+            window.render = function(){
+                React.renderComponent(<App val={5}/>, document.getElementById("panel"))
+            }
+            window.unmount = function(){
+                React.unmountComponentAtNode(document.getElementById("panel"));
+            }
 
-            React.renderComponent(<App />, document.body)
         </script>
 
 
