@@ -65,46 +65,43 @@
 
     </head>
     <body>
-    <button onClick="render()">Render</button>
-    <button onClick="unmount()">Unmount</button>
-    <hr />
+
     <div id="panel"></div>
         <script type="text/jsx">
         /*** @jsx React.DOM */
             var App = React.createClass({
-            componentWillMount:function(){
-                console.log("componentWillMount");
-                this.setState({m:2});
-                if(this.props.val===0){
-                    this.btnStyle = {'color':'red'}
+            getInitialState:function(){
+                return{
+                    increasing:false
                 }
             },
-            componentDidMount:function(rootNode){
-                this.inc = setInterval(this.update, 500);
+            componentWillReceiveProps:function(nextProps){
+                console.log("componentWillReceiveProps");
+                this.setState({increasing:nextProps.val>this.props.val});
             },
-            componentWillUnmount:function(){
-                console.log("componentWillUnmount");
-                clearInterval(this.inc);
+            shouldComponentUpdate:function(nextProps, nextState){
+                return nextProps.val % 5 === 0;
+            },
+            componentWillUpdate:function(nextProps, nextState){
+                console.log("next props = " + JSON.stringify(nextProps));
             },
             update:function(){
                 var newVal = this.props.val+1
                 this.setProps({val:newVal})
+                console.log(newVal);
             },
             render:function(){
-                console.log("render")
+                console.log(this.state.increasing)
                 return  <button
-                    style={this.btnStyle}
                     onClick={this.update}>
-                    {this.props.val*this.state.m}
+                    {this.props.val}
                 </button>
             },
+            componentDidUpdate:function(prevProps, prevState, rootNode){
+                console.log("prevProps === " + JSON.stringify(prevProps));
+            }
             });
-            window.render = function(){
-                React.renderComponent(<App val={0}/>, document.getElementById("panel"))
-            }
-            window.unmount = function(){
-                React.unmountComponentAtNode(document.getElementById("panel"));
-            }
+            React.renderComponent(<App val={0}/>, document.getElementById("panel"));
 
         </script>
 
