@@ -77,6 +77,7 @@
             },
             componentWillReceiveProps:function(nextProps){
                 console.log("componentWillReceiveProps!!!");
+                console.log("branch_test");
                 this.setState({increasing:nextProps.val>this.props.val});
             },
             shouldComponentUpdate:function(nextProps, nextState){
