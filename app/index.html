@@ -69,38 +69,50 @@
     <div id="panel"></div>
         <script type="text/jsx">
         /*** @jsx React.DOM */
-            var App = React.createClass({
-            getInitialState:function(){
-                return{
-                    increasing:false
+            var ReactMixin = {
+                componentWillMount:function(){
+                    console.log("will mount");
+                },
+                getInitialState:function(){
+                    return{
+                        count:0
+                    }
+                },
+                incrementCount:function(){
+                    this.setState({count: this.state.count + 1})
                 }
-            },
-            componentWillReceiveProps:function(nextProps){
-                console.log("componentWillReceiveProps!!!");
-                console.log("branch_test");
-                this.setState({increasing:nextProps.val>this.props.val});
-            },
-            shouldComponentUpdate:function(nextProps, nextState){
-                return nextProps.val % 5 === 0;
-            },
-            componentWillUpdate:function(nextProps, nextState){
-                console.log("next props = " + JSON.stringify(nextProps));
-            },
-            update:function(){
-                var newVal = this.props.val+1
-                this.setProps({val:newVal})
-                console.log(newVal);
-            },
-            render:function(){
-                console.log(this.state.increasing)
-                return  <button
-                    onClick={this.update}>
-                    {this.props.val}
-                </button>
-            },
-            componentDidUpdate:function(prevProps, prevState, rootNode){
-                console.log("prevProps === " + JSON.stringify(prevProps));
             }
+            var App = React.createClass({
+                render:function(){
+                    console.log("App render");
+                    return(
+                        <div>
+                            <buttonComponent txt="this is the button" />
+                            <inputComponent txt="this is the input" />
+                        </div>
+                    )
+                }
+            });
+            var buttonComponent = React.createClass({
+                mixins:[ReactMixin],
+                render:function(){
+                    console.log("button render");
+                    return(
+                        <button onClick={this.incrementCount}>{this.props.txt} - {this.state.count}</button>
+                    )
+                }
+            });
+            var inputComponent = React.createClass({
+                mixins:[ReactMixin],
+                componentWillMount: function(){
+                    setInterval(this.incrementCount, 1000);
+                },
+               render:function(){
+                   console.log("input render");
+                   return(
+                       <input value={this.props.txt + " - " + this.state.count} />
+                   )
+               }
             });
             React.renderComponent(<App val={0}/>, document.getElementById("panel"));
 
